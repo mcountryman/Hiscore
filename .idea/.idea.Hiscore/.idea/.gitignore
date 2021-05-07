@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.Hiscore.iml
+# Datasource local storage ignored files
+/../../../../../../../../../:\Users\marvinc\Development\_\Hiscore\.idea\.idea.Hiscore\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

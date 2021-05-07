@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Models" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Fody" Version="6.5.1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="MaterialDesignThemes" Version="4.0.0" />
+      <PackageReference Include="ReactiveUI" Version="13.2.18" />
+      <PackageReference Include="ReactiveUI.Fody" Version="13.2.18" />
+      <PackageReference Include="ReactiveUI.WPF" Version="13.2.18" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Hiscore.Core\Hiscore.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Assets\Icons.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Icons.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Assets\Icons.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>

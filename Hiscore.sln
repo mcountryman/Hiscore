@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hiscore", "src\Hiscore\Hiscore.csproj", "{CC9EC2B0-4FD9-408B-849C-E081738D6FD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hiscore.Core", "src\Hiscore.Core\Hiscore.Core.csproj", "{2E83201E-776A-4233-9C6B-EBF45471F7EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hiscore.Core.Tests", "src\Hiscore.Core.Tests\Hiscore.Core.Tests.csproj", "{3EC8A81B-6C23-4477-84D2-009E0E5CE0D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "@", "@", "{0852F19B-8860-4E1F-A93E-5893FE6C5B37}"
+ProjectSection(SolutionItems) = preProject
+	.gitignore = .gitignore
+EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC9EC2B0-4FD9-408B-849C-E081738D6FD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC9EC2B0-4FD9-408B-849C-E081738D6FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC9EC2B0-4FD9-408B-849C-E081738D6FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC9EC2B0-4FD9-408B-849C-E081738D6FD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E83201E-776A-4233-9C6B-EBF45471F7EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E83201E-776A-4233-9C6B-EBF45471F7EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E83201E-776A-4233-9C6B-EBF45471F7EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E83201E-776A-4233-9C6B-EBF45471F7EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EC8A81B-6C23-4477-84D2-009E0E5CE0D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EC8A81B-6C23-4477-84D2-009E0E5CE0D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EC8A81B-6C23-4477-84D2-009E0E5CE0D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EC8A81B-6C23-4477-84D2-009E0E5CE0D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

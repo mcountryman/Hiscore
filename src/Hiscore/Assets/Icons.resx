@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema
+    id="root"
+    xmlns=""
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+
+    <xsd:element name="root" msdata:IsDataSet="true">
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0,
+      Culture=neutral, PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0,
+      Culture=neutral, PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  
+  <data name="OldSchoolAgility" type="System.IO.MemoryStream">
+    <value>Icons\osrs-agility.png</value>
+  </data>
+  <data name="OldSchoolAttack" type="System.IO.MemoryStream">
+    <value>Icons\osrs-attack.png</value>
+  </data>
+  <data name="OldSchoolConstruction" type="System.IO.MemoryStream">
+    <value>Icons\osrs-construction.png</value>
+  </data>
+  <data name="OldSchoolCooking" type="System.IO.MemoryStream">
+    <value>Icons\osrs-cooking.png</value>
+  </data>
+  <data name="OldSchoolCrafting" type="System.IO.MemoryStream">
+    <value>Icons\osrs-crafting.png</value>
+  </data>
+  <data name="OldSchoolDefense" type="System.IO.MemoryStream">
+    <value>Icons\osrs-defense.png</value>
+  </data>
+  <data name="OldSchoolFarming" type="System.IO.MemoryStream">
+    <value>Icons\osrs-farming.png</value>
+  </data>
+  <data name="OldSchoolFiremaking" type="System.IO.MemoryStream">
+    <value>Icons\osrs-firemaking.png</value>
+  </data>
+  <data name="OldSchoolFishing" type="System.IO.MemoryStream">
+    <value>Icons\osrs-fishing.png</value>
+  </data>
+  <data name="OldSchoolFletching" type="System.IO.MemoryStream">
+    <value>Icons\osrs-fletching.png</value>
+  </data>
+  <data name="OldSchoolHerblore" type="System.IO.MemoryStream">
+    <value>Icons\osrs-herblore.png</value>
+  </data>
+  <data name="OldSchoolHitpoints" type="System.IO.MemoryStream">
+    <value>Icons\osrs-hitpoints.png</value>
+  </data>
+  <data name="OldSchoolHunter" type="System.IO.MemoryStream">
+    <value>Assets\Icons\osrs-hunter.png</value>
+  </data>
+  <data name="OldSchoolMagic" type="System.IO.MemoryStream">
+    <value>Assets\Icons\osrs-magic.png</value>
+  </data>
+  <data name="OldSchoolMining" type="System.IO.MemoryStream">
+    <value>Assets\Icons\osrs-mining.png</value>
+  </data>
+  <data name="OldSchoolPrayer" type="System.IO.MemoryStream">
+    <value>Assets\Icons\osrs-prayer.png</value>
+  </data>
+  <data name="OldSchoolRange" type="System.IO.MemoryStream">
+    <value>Assets\Icons\osrs-range.png</value>
+  </data>
+  <data name="OldSchoolRuneCrafting" type="System.IO.MemoryStream">
+    <value>Assets\Icons\osrs-runecrafting.png</value>
+  </data>
+  <data name="OldSchoolSlayer" type="System.IO.MemoryStream">
+    <value>Assets\Icons\osrs-slayer.png</value>
+  </data>
+  <data name="OldSchoolSmithing" type="System.IO.MemoryStream">
+    <value>Assets\Icons\osrs-smithing.png</value>
+  </data>
+  <data name="OldSchoolStrength" type="System.IO.MemoryStream">
+    <value>Assets\Icons\osrs-str.png</value>
+  </data>
+  <data name="OldSchoolTheiving" type="System.IO.MemoryStream">
+    <value>Assets\Icons\osrs-theiving.png</value>
+  </data>
+  <data name="OldSchoolWoodcutting" type="System.IO.MemoryStream">
+    <value>Assets\Icons\osrs-woodcutting.png</value>
+  </data>
+  <data name="Overall" type="System.IO.MemoryStream">
+    <value>Assets\Icons\overall.png</value>
+  </data>
+</root>
