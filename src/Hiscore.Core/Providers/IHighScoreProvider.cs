@@ -4,8 +4,6 @@ using Hiscore.Core.Models;
 
 namespace Hiscore.Core.Providers {
   public interface IHighScoreProvider {
-    Game Game { get; }
-    
     Task<IPlayerStats> GetStats(string player, Mode mode, CancellationToken cancellationToken);
   }
 }

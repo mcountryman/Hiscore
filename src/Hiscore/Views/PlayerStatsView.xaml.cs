@@ -2,11 +2,8 @@
 using System.Reactive.Disposables;
 using System.Windows;
 using Hiscore.Models;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
 using Hiscore.ViewModels;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
 
 namespace Hiscore.Views {
   public partial class PlayerStatsView {
@@ -22,64 +19,32 @@ namespace Hiscore.Views {
             view => view.PART_Name.Text
           )
           .DisposeWith(dispose);
-        
+
+        this
+          .Bind(
+            ViewModel,
+            viewModel => viewModel.Mode,
+            view => view.PART_Mode.SelectedItem
+          )
+          .DisposeWith(dispose);
+
         ViewModel
           .WhenAnyValue(viewModel => viewModel.State)
           .Subscribe(state => {
-            switch (state) {
-              case PlayerStatsState.Error:
-                PART_Empty.Visibility = Visibility.Collapsed;
-                PART_Error.Visibility = Visibility.Visible;
-                PART_Loading.Visibility = Visibility.Collapsed;
-                PART_NotFound.Visibility = Visibility.Collapsed;
-                
-                PART_SkillLabels.Visibility = Visibility.Collapsed;
-                PART_OldSchoolSkills.Visibility = Visibility.Collapsed;
-                break;
-              case PlayerStatsState.Found:
-                PART_Empty.Visibility = Visibility.Collapsed;
-                PART_Error.Visibility = Visibility.Collapsed;
-                PART_Loading.Visibility = Visibility.Collapsed;
-                PART_NotFound.Visibility = Visibility.Collapsed;
+            PART_Empty.Visibility = state == PlayerStatsState.Empty ? Visibility.Visible : Visibility.Collapsed;
+            PART_Error.Visibility = state == PlayerStatsState.Error ? Visibility.Visible : Visibility.Collapsed;
+            PART_Loading.Visibility = state == PlayerStatsState.Loading ? Visibility.Visible : Visibility.Collapsed;
+            PART_NotFound.Visibility = state == PlayerStatsState.NotFound ? Visibility.Visible : Visibility.Collapsed;
 
-                PART_SkillLabels.Visibility = Visibility.Visible;
-                PART_OldSchoolSkills.Visibility = Visibility.Visible;
-                break;
-              case PlayerStatsState.Loading:
-                PART_Empty.Visibility = Visibility.Collapsed;
-                PART_Error.Visibility = Visibility.Collapsed;
-                PART_Loading.Visibility = Visibility.Visible;
-                PART_NotFound.Visibility = Visibility.Collapsed;
-                
-                PART_SkillLabels.Visibility = Visibility.Collapsed;
-                PART_OldSchoolSkills.Visibility = Visibility.Collapsed;
-                break;
-              case PlayerStatsState.NotFound:
-                PART_Empty.Visibility = Visibility.Collapsed;
-                PART_Error.Visibility = Visibility.Collapsed;
-                PART_Loading.Visibility = Visibility.Collapsed;
-                PART_NotFound.Visibility = Visibility.Visible;
-                
-                PART_SkillLabels.Visibility = Visibility.Collapsed;
-                PART_OldSchoolSkills.Visibility = Visibility.Collapsed;
-                break;
-              default:
-                PART_Empty.Visibility = Visibility.Visible;
-                PART_Error.Visibility = Visibility.Collapsed;
-                PART_Loading.Visibility = Visibility.Collapsed;
-                PART_NotFound.Visibility = Visibility.Collapsed;
-                
-                PART_SkillLabels.Visibility = Visibility.Collapsed;
-                PART_OldSchoolSkills.Visibility = Visibility.Collapsed;
-                break;
-            }
-          });
-        
+            PART_SkillsCard.Visibility = state == PlayerStatsState.Found ? Visibility.Visible : Visibility.Collapsed;
+          })
+          .DisposeWith(dispose);
+
         this
           .OneWayBind(
             ViewModel,
             viewModel => viewModel.OldSchoolSkills,
-            view => view.PART_OldSchoolSkills.ItemsSource
+            view => view.PART_Skills.ItemsSource
           )
           .DisposeWith(dispose);
       });

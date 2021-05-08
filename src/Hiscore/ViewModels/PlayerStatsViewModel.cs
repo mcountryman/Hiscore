@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using DynamicData.Binding;
 using Hiscore.Core.Exceptions;
 using Hiscore.Core.Models;
-using Hiscore.Core.Providers.OldSchool;
+using Hiscore.Core.Providers;
 using Hiscore.Models;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -27,21 +26,21 @@ namespace Hiscore.ViewModels {
 
         this
           // Wait for `Name` property to change, throttle events, and trim string. 
-          .WhenValueChanged(x => x.Name)
-          .Select(name => name?.Trim())
+          .WhenAnyValue(x => x.Name, x => x.Mode)
+          .Select(value => (value.Item1?.Trim(), value.Item2))
           .Throttle(TimeSpan.FromMilliseconds(800))
           // Set state to loading
           .ObserveOn(RxApp.MainThreadScheduler)
           .Do(_ => State = PlayerStatsState.Loading)
           // On async scheduler, with 2s timeout
           .ObserveOn(RxApp.TaskpoolScheduler)
-          .SelectMany(name => Observable.If(
-            () => String.IsNullOrEmpty(name),
+          .SelectMany(value => Observable.If(
+            () => String.IsNullOrEmpty(value.Item1),
             // Return an empty list
             Observable.Return((PlayerStatsState.Empty, empty)),
             // Get stats and map to `PlayerSkillViewModel`
             Observable
-              .FromAsync(cancel => _oldSchoolHighScoreProvider.GetStats(name!, Mode, cancel))
+              .FromAsync(cancel => _highScoreProvider.GetStats(value.Item1!, value.Item2, cancel))
               .Timeout(TimeSpan.FromSeconds(2))
               .Select(stats => stats.Skills.Select(skill => new PlayerSkillViewModel(skill)).ToList())
               .Select(skills => (PlayerStatsState.Found, skills))
@@ -62,6 +61,6 @@ namespace Hiscore.ViewModels {
       });
     }
 
-    readonly OldSchoolHighScoreProvider _oldSchoolHighScoreProvider = new();
+    readonly HighScoreProvider _highScoreProvider = new();
   }
 }

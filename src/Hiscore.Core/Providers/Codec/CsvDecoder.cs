@@ -2,7 +2,7 @@
 using System.Linq;
 using Hiscore.Core.Models;
 
-namespace Hiscore.Core.Providers.OldSchool.Codec {
+namespace Hiscore.Core.Providers.Codec {
   /// <summary>
   /// Decode OSRS player stats from CSV.
   /// </summary>
@@ -17,14 +17,14 @@ namespace Hiscore.Core.Providers.OldSchool.Codec {
     /// </summary>
     /// <param name="content">The CSV content.</param>
     /// <returns>Player statistics</returns>
-    public OldSchoolStats Decode(string content) {
+    public PlayerStats Decode(string content) {
       var lines = content.Split('\n');
 
-      return new OldSchoolStats {
+      return new PlayerStats {
         Skills = Enumerable.Range(0, SKILLS_COUNT)
           .Select(i => {
             var items = lines[i].Split(',');
-            return new OldSchoolSkill {
+            return new PlayerSkill {
               Skill = GetSkill(i),
               Rank = Convert.ToInt32(items[0]),
               Level = Convert.ToUInt16(items[1]),

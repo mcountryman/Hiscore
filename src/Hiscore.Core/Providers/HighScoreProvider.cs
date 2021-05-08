@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 using Hiscore.Core.Exceptions;
 using Hiscore.Core.Models;
-using Hiscore.Core.Providers.OldSchool.Codec;
+using Hiscore.Core.Providers.Codec;
 
-namespace Hiscore.Core.Providers.OldSchool {
-  public class OldSchoolHighScoreProvider : IHighScoreProvider {
+namespace Hiscore.Core.Providers {
+  public class HighScoreProvider : IHighScoreProvider {
     const string URL = "https://secure.runescape.com";
     const string PATH_STATS = "index_lite.ws";
     const string PATH_SCORES = "overall.ws";
-
-    public Game Game => Game.OldSchoolRunescape;
     
-    public OldSchoolHighScoreProvider() {
+    public HighScoreProvider() {
       _http = new HttpClient();
       _csvDecoder = new CsvDecoder();
     }
@@ -39,7 +34,6 @@ namespace Hiscore.Core.Providers.OldSchool {
 
     string GetModeSegment(Mode type) {
       return type switch {
-        Mode.None => "m=hiscore_oldschool",
         Mode.Normal => "m=hiscore_oldschool",
         Mode.IronMan => "m=hiscore_oldschool_ironman",
         Mode.Ultimate => "m=hiscore_oldschool_ultimate",

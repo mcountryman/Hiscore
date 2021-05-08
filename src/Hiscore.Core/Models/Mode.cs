@@ -3,7 +3,6 @@
   /// Runescape game mode
   /// </summary>
   public enum Mode {
-    None,
     Normal,
     IronMan,
     Ultimate,

@@ -10,6 +10,8 @@
   xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
   xmlns:reactive="http://reactiveui.net"
   xmlns:viewModels="clr-namespace:Hiscore.ViewModels"
+  xmlns:System="clr-namespace:System;assembly=System.Runtime"
+  xmlns:models="clr-namespace:Hiscore.Core.Models;assembly=Hiscore.Core"
 
   mc:Ignorable="d"
 
@@ -17,22 +19,43 @@
   d:DesignHeight="300"
   d:DesignWidth="300">
 
+  <UserControl.Resources>
+    <ObjectDataProvider x:Key="Modes" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+      <ObjectDataProvider.MethodParameters>
+        <x:Type TypeName="models:Mode" />
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+  </UserControl.Resources>
+
   <Grid VerticalAlignment="Stretch">
     <Grid.RowDefinitions>
       <RowDefinition Height="50" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
 
-    <TextBox
-      x:Name="PART_Name"
-      Width="300"
-      Margin="10"
-      HorizontalAlignment="Center"
-      material:HintAssist.Hint="Player name"
-      material:HintAssist.HelperText="Runescape player name" />
+    <StackPanel
+      Grid.Row="0"
+      Orientation="Horizontal"
+      VerticalAlignment="Center"
+      HorizontalAlignment="Center">
+
+      <Grid Width="50" />
+
+      <TextBox
+        x:Name="PART_Name"
+        Width="300"
+        Margin="10"
+        material:HintAssist.Hint="Player name"
+        material:HintAssist.HelperText="Runescape player name" />
+
+      <ComboBox
+        x:Name="PART_Mode"
+        Width="100"
+        ItemsSource="{Binding Source={StaticResource Modes}}" />
+    </StackPanel>
 
     <material:Card
-      x:Name="PART_Card"
+      x:Name="PART_SkillsCard"
       Grid.Row="1"
       Margin="10,20,10,10">
 
@@ -42,7 +65,7 @@
           <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid x:Name="PART_SkillLabels" Height="40">
+        <Grid Height="40">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30" />
             <ColumnDefinition Width="3*" />
@@ -51,7 +74,7 @@
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="80" />
           </Grid.ColumnDefinitions>
-          
+
           <TextBlock
             Grid.ColumnSpan="2"
             Text="Skills"
@@ -87,84 +110,90 @@
 
         <ListBox
           Grid.Row="1"
-          x:Name="PART_OldSchoolSkills"
-          Height="{Binding ElementName=LayoutRoot, Path=ActualHeight}"
+          x:Name="PART_Skills"
           HorizontalContentAlignment="Stretch" />
-        
-        <StackPanel 
-          x:Name="PART_Empty"
-          Grid.Row="1"
-          Visibility="Collapsed"
-          Orientation="Vertical"
-          VerticalAlignment="Center"
-          HorizontalAlignment="Stretch">
-          
-          <material:PackIcon 
-            Kind="Cake"
-            Width="50"
-            Height="50"
-            Margin="20"
-            HorizontalAlignment="Center"/>
-          
-          <TextBlock 
-            Text="Can't find a player if you don't give me a name." 
-            FontSize="16" 
-            HorizontalAlignment="Center" />
-        </StackPanel>
-        
-        <StackPanel 
-          x:Name="PART_Error"
-          Grid.Row="1"
-          Visibility="Collapsed"
-          Orientation="Vertical"
-          VerticalAlignment="Center"
-          HorizontalAlignment="Stretch">
-          
-          <material:PackIcon 
-            Kind="Fire"
-            Width="50"
-            Height="50"
-            Margin="20"
-            HorizontalAlignment="Center"/>
-          
-          <TextBlock 
-            Text="Oh shit it broke." 
-            FontSize="16" 
-            HorizontalAlignment="Center" />
-        </StackPanel>
-        
-        <StackPanel 
-          x:Name="PART_NotFound"
-          Grid.Row="1"
-          Visibility="Collapsed"
-          Orientation="Vertical"
-          VerticalAlignment="Center"
-          HorizontalAlignment="Stretch">
-          
-          <material:PackIcon 
-            Kind="Surfing"
-            Width="50"
-            Height="50"
-            Margin="20"
-            HorizontalAlignment="Center"/>
-          
-          <TextBlock 
-            Text="That player doesn't exist." 
-            FontSize="16" 
-            HorizontalAlignment="Center" />
-        </StackPanel>
-
-        <ProgressBar
-          Grid.Row="1"
-          x:Name="PART_Loading"
-          Width="50"
-          Height="50"
-          Style="{StaticResource MaterialDesignCircularProgressBar}"
-          Visibility="Collapsed"
-          IsIndeterminate="True"
-          VerticalAlignment="Center"
-          HorizontalAlignment="Center" />
       </Grid>
     </material:Card>
+
+    <Grid Grid.Row="1" VerticalAlignment="Stretch">
+      <Grid.Resources>
+        <Style TargetType="material:PackIcon">
+          <Setter Property="Foreground" Value="DimGray" />
+        </Style>
+        <Style TargetType="TextBlock">
+          <Setter Property="Foreground" Value="DimGray" />
+        </Style>
+      </Grid.Resources>
+
+      <StackPanel
+        x:Name="PART_Error"
+        Visibility="Collapsed"
+        Orientation="Vertical"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Stretch">
+
+        <material:PackIcon
+          Kind="Fire"
+          Width="50"
+          Height="50"
+          Margin="20"
+          HorizontalAlignment="Center" />
+
+        <TextBlock
+          Text="Oh shit it broke."
+          FontSize="16"
+          HorizontalAlignment="Center" />
+      </StackPanel>
+
+      <StackPanel
+        x:Name="PART_Empty"
+        Visibility="Collapsed"
+        Orientation="Vertical"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Stretch">
+
+        <material:PackIcon
+          Kind="Search"
+          Width="50"
+          Height="50"
+          Margin="20"
+          HorizontalAlignment="Center" />
+
+        <TextBlock
+          Text="Find a player by their username."
+          FontSize="16"
+          HorizontalAlignment="Center" />
+      </StackPanel>
+
+      <StackPanel
+        x:Name="PART_NotFound"
+        Visibility="Collapsed"
+        Orientation="Vertical"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Stretch">
+
+        <material:PackIcon
+          Kind="Surfing"
+          Width="50"
+          Height="50"
+          Margin="20"
+          HorizontalAlignment="Center" />
+
+        <TextBlock
+          Text="That player doesn't exist."
+          FontSize="16"
+          HorizontalAlignment="Center" />
+      </StackPanel>
+
+      <ProgressBar
+        x:Name="PART_Loading"
+        Width="50"
+        Height="50"
+        Style="{StaticResource MaterialDesignCircularProgressBar}"
+        Visibility="Collapsed"
+        IsIndeterminate="True"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Center" />
+    </Grid>
   </Grid>
 </reactive:ReactiveUserControl>

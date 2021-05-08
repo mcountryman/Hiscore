@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Hiscore.Core.Models;
-using Hiscore.Core.Providers.OldSchool.Codec;
+using Hiscore.Core.Providers.Codec;
 using NUnit.Framework;
 
 namespace Hiscore.Core.Tests.Providers.OldSchool.Codec {
