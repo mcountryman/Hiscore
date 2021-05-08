@@ -18,7 +18,7 @@ namespace Hiscore.ViewModels {
     [Reactive] public string Name { get; set; } = "";
     [Reactive] public Mode Mode { get; set; } = Mode.Normal;
     [Reactive] public PlayerStatsState State { get; set; } = PlayerStatsState.Empty;
-    [Reactive] public IEnumerable<PlayerSkillViewModel> OldSchoolSkills { get; set; }
+    [Reactive] public IEnumerable<PlayerSkillViewModel> Skills { get; set; } = Array.Empty<PlayerSkillViewModel>();
 
     public PlayerStatsViewModel() {
       this.WhenActivated(dispose => {
@@ -54,7 +54,7 @@ namespace Hiscore.ViewModels {
               var (state, skills) = value;
 
               State = state;
-              OldSchoolSkills = skills;
+              Skills = skills;
             }
           )
           .DisposeWith(dispose);

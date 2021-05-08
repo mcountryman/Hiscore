@@ -43,7 +43,7 @@ namespace Hiscore.Views {
         this
           .OneWayBind(
             ViewModel,
-            viewModel => viewModel.OldSchoolSkills,
+            viewModel => viewModel.Skills,
             view => view.PART_Skills.ItemsSource
           )
           .DisposeWith(dispose);

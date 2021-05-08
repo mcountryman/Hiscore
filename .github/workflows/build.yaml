@@ -1,0 +1,19 @@
+jobs:
+  build:
+    steps:
+      - name: Install dotnetcore
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5
+
+      - name: Build
+        run: |
+          dotnet restore
+          dotnet build -c Release
+
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: src/Hiscore/Assets/bin/Release/**/*
