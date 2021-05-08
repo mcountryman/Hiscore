@@ -8,7 +8,30 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Models" />
+      <Resource Include="Assets/Icons/overall.png" />
+      <Resource Include="Assets/Icons/osrs-agility.png" />
+      <Resource Include="Assets/Icons/osrs-attack.png" />
+      <Resource Include="Assets/Icons/osrs-defense.png" />
+      <Resource Include="Assets/Icons/osrs-str.png" />
+      <Resource Include="Assets/Icons/osrs-hitpoints.png" />
+      <Resource Include="Assets/Icons/osrs-range.png" />
+      <Resource Include="Assets/Icons/osrs-prayer.png" />
+      <Resource Include="Assets/Icons/osrs-magic.png" />
+      <Resource Include="Assets/Icons/osrs-cooking.png" />
+      <Resource Include="Assets/Icons/osrs-woodcutting.png" />
+      <Resource Include="Assets/Icons/osrs-fletching.png" />
+      <Resource Include="Assets/Icons/osrs-fishing.png" />
+      <Resource Include="Assets/Icons/osrs-firemaking.png" />
+      <Resource Include="Assets/Icons/osrs-crafting.png" />
+      <Resource Include="Assets/Icons/osrs-smithing.png" />
+      <Resource Include="Assets/Icons/osrs-mining.png" />
+      <Resource Include="Assets/Icons/osrs-herblore.png" />
+      <Resource Include="Assets/Icons/osrs-thieving.png" />
+      <Resource Include="Assets/Icons/osrs-slayer.png" />
+      <Resource Include="Assets/Icons/osrs-farming.png" />
+      <Resource Include="Assets/Icons/osrs-runecrafting.png" />
+      <Resource Include="Assets/Icons/osrs-hunter.png" />
+      <Resource Include="Assets/Icons/osrs-constructions.png" />
     </ItemGroup>
 
     <ItemGroup>
@@ -24,13 +47,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Hiscore.Core\Hiscore.Core.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Update="Assets\Icons.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Icons.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>

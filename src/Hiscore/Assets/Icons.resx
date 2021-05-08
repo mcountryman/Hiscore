@@ -63,39 +63,39 @@
     <value>Icons\osrs-hitpoints.png</value>
   </data>
   <data name="OldSchoolHunter" type="System.IO.MemoryStream">
-    <value>Assets\Icons\osrs-hunter.png</value>
+    <value>Icons\osrs-hunter.png</value>
   </data>
   <data name="OldSchoolMagic" type="System.IO.MemoryStream">
-    <value>Assets\Icons\osrs-magic.png</value>
+    <value>Icons\osrs-magic.png</value>
   </data>
   <data name="OldSchoolMining" type="System.IO.MemoryStream">
-    <value>Assets\Icons\osrs-mining.png</value>
+    <value>Icons\osrs-mining.png</value>
   </data>
   <data name="OldSchoolPrayer" type="System.IO.MemoryStream">
-    <value>Assets\Icons\osrs-prayer.png</value>
+    <value>Icons\osrs-prayer.png</value>
   </data>
   <data name="OldSchoolRange" type="System.IO.MemoryStream">
-    <value>Assets\Icons\osrs-range.png</value>
+    <value>Icons\osrs-range.png</value>
   </data>
   <data name="OldSchoolRuneCrafting" type="System.IO.MemoryStream">
-    <value>Assets\Icons\osrs-runecrafting.png</value>
+    <value>Icons\osrs-runecrafting.png</value>
   </data>
   <data name="OldSchoolSlayer" type="System.IO.MemoryStream">
-    <value>Assets\Icons\osrs-slayer.png</value>
+    <value>Icons\osrs-slayer.png</value>
   </data>
   <data name="OldSchoolSmithing" type="System.IO.MemoryStream">
-    <value>Assets\Icons\osrs-smithing.png</value>
+    <value>Icons\osrs-smithing.png</value>
   </data>
   <data name="OldSchoolStrength" type="System.IO.MemoryStream">
-    <value>Assets\Icons\osrs-str.png</value>
+    <value>Icons\osrs-str.png</value>
   </data>
   <data name="OldSchoolTheiving" type="System.IO.MemoryStream">
-    <value>Assets\Icons\osrs-theiving.png</value>
+    <value>Icons\osrs-theiving.png</value>
   </data>
   <data name="OldSchoolWoodcutting" type="System.IO.MemoryStream">
-    <value>Assets\Icons\osrs-woodcutting.png</value>
+    <value>Icons\osrs-woodcutting.png</value>
   </data>
   <data name="Overall" type="System.IO.MemoryStream">
-    <value>Assets\Icons\overall.png</value>
+    <value>Icons\overall.png</value>
   </data>
 </root>

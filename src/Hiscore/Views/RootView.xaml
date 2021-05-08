@@ -13,8 +13,9 @@
   xmlns:viewModels="clr-namespace:Hiscore.ViewModels"
 
   mc:Ignorable="d"
-
+  
   Title="Hiscore"
+  Style="{StaticResource MaterialDesignWindow}"
   Height="450"
   Width="800">
 

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using Hiscore.Core.Exceptions;
 using Hiscore.Core.Models;
 using Hiscore.Core.Providers.OldSchool.Codec;
 
@@ -24,8 +26,10 @@ namespace Hiscore.Core.Providers.OldSchool {
     public async Task<IPlayerStats> GetStats(string playerName, Mode mode, CancellationToken cancellationToken) {
       var uri = GetUri(URL, GetModeSegment(mode), PATH_STATS + $"?player={playerName}");
       var response = await _http.GetAsync(uri, cancellationToken);
+      if (response.StatusCode == HttpStatusCode.NotFound)
+        throw new PlayerNotFoundException(playerName);
+      
       var content = await response.Content.ReadAsStringAsync(cancellationToken);
-
       return _csvDecoder.Decode(content);
     }
 

@@ -1,6 +1,7 @@
-﻿using System.Reactive.Disposables;
-using System.Windows.Controls;
-using Hiscore.ViewModels;
+﻿using System;
+using System.Reactive.Disposables;
+using System.Reflection;
+using System.Windows.Media.Imaging;
 using ReactiveUI;
 
 namespace Hiscore.Views {
@@ -9,13 +10,17 @@ namespace Hiscore.Views {
       InitializeComponent();
 
       this.WhenActivated(dispose => {
-        // this
-        //   .OneWayBind(
-        //     ViewModel,
-        //     viewModel => viewModel.Icon,
-        //     view => view.PART_Icon.Source
-        //   )
-        //   .DisposeWith(dispose);
+        this
+          .OneWayBind(
+            ViewModel,
+            viewModel => viewModel.Icon,
+            view => view.PART_Icon.Source,
+            source => new BitmapImage(new Uri(
+              @$"pack://application:,,,/{Assembly.GetExecutingAssembly().GetName().Name};component/Assets/Icons/{source}.png",
+              UriKind.Absolute
+            ))
+          )
+          .DisposeWith(dispose);
 
         this
           .OneWayBind(

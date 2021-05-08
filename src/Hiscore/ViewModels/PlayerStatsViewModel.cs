@@ -4,58 +4,62 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 using DynamicData.Binding;
-using Hiscore.Core;
+using Hiscore.Core.Exceptions;
 using Hiscore.Core.Models;
-using Hiscore.Core.Providers;
 using Hiscore.Core.Providers.OldSchool;
+using Hiscore.Models;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 namespace Hiscore.ViewModels {
   public class PlayerStatsViewModel : ReactiveObject, IActivatableViewModel {
-    public ViewModelActivator Activator { get; } = new ViewModelActivator();
-    
+    public ViewModelActivator Activator { get; } = new();
+
     [Reactive] public string Name { get; set; } = "";
     [Reactive] public Mode Mode { get; set; } = Mode.Normal;
-    [Reactive] public bool IsLoading { get; set; } = false;
+    [Reactive] public PlayerStatsState State { get; set; } = PlayerStatsState.Empty;
     [Reactive] public IEnumerable<PlayerSkillViewModel> OldSchoolSkills { get; set; }
 
     public PlayerStatsViewModel() {
       this.WhenActivated(dispose => {
-        var nameObserver = this
+        var empty = new List<PlayerSkillViewModel>();
+
+        this
+          // Wait for `Name` property to change, throttle events, and trim string. 
           .WhenValueChanged(x => x.Name)
-          .Where(x => !String.IsNullOrEmpty(x))
-          .Throttle(TimeSpan.FromMilliseconds(800));
-
-        var skillsObserver = nameObserver
-          .SelectMany(GetOldSchoolSkills);
-
-        nameObserver
+          .Select(name => name?.Trim())
+          .Throttle(TimeSpan.FromMilliseconds(800))
+          // Set state to loading
           .ObserveOn(RxApp.MainThreadScheduler)
-          .Subscribe(_ => IsLoading = true)
+          .Do(_ => State = PlayerStatsState.Loading)
+          // On async scheduler, with 2s timeout
+          .ObserveOn(RxApp.TaskpoolScheduler)
+          .SelectMany(name => Observable.If(
+            () => String.IsNullOrEmpty(name),
+            // Return an empty list
+            Observable.Return((PlayerStatsState.Empty, empty)),
+            // Get stats and map to `PlayerSkillViewModel`
+            Observable
+              .FromAsync(cancel => _oldSchoolHighScoreProvider.GetStats(name!, Mode, cancel))
+              .Timeout(TimeSpan.FromSeconds(2))
+              .Select(stats => stats.Skills.Select(skill => new PlayerSkillViewModel(skill)).ToList())
+              .Select(skills => (PlayerStatsState.Found, skills))
+              .Catch((PlayerNotFoundException _) => Observable.Return((PlayerStatsState.NotFound, empty)))
+              .Catch((Exception _) => Observable.Return((PlayerStatsState.Error, empty)))
+          ))
+          // Update `State` and `OldSchoolSkills`
+          .ObserveOn(RxApp.MainThreadScheduler)
+          .Subscribe(
+            value => {
+              var (state, skills) = value;
+
+              State = state;
+              OldSchoolSkills = skills;
+            }
+          )
           .DisposeWith(dispose);
-
-        skillsObserver
-          .ObserveOn(RxApp.MainThreadScheduler)
-          .Subscribe(skills => {
-            IsLoading = false;
-            OldSchoolSkills = skills;
-          });
       });
-    }
-
-    async Task<IEnumerable<PlayerSkillViewModel>> GetOldSchoolSkills(string? name, CancellationToken cancellationToken) {
-      try {
-        var stats = await _oldSchoolHighScoreProvider.GetStats(name, Mode, cancellationToken);
-        return stats.Skills.Select(skill => new PlayerSkillViewModel(skill));
-      } catch (Exception ex) {
-        Debug.WriteLine(ex.ToString());
-        return new List<PlayerSkillViewModel>();
-      }
     }
 
     readonly OldSchoolHighScoreProvider _oldSchoolHighScoreProvider = new();
