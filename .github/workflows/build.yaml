@@ -13,10 +13,11 @@ jobs:
         with:
           dotnet-version: 5.0.100
 
+      - name: Restore
+        run: dotnet restore
+
       - name: Build
-        run: |
-          dotnet restore
-          dotnet build -c Release
+        run: dotnet build -c Release
 
       - name: Create release
         uses: softprops/action-gh-release@v1
