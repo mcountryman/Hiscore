@@ -26,4 +26,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: src/Hiscore/Assets/bin/Release/**/*
+          files: |
+            src/Hiscore/bin/Release/**/*
