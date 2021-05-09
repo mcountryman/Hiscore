@@ -1,5 +1,5 @@
 # Hiscore
 
-A WPF OSRS Runescape hiscores viewer.
+An Oldschool Runescape hiscores viewer made with WPF, ReactiveUI, and MaterialDesignInXamlToolkit.
 
 ![preview](img/preview.gif)
